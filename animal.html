@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estonian Language Quiz: Animals</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        .quiz-container {
+            width: 60%;
+            background: white;
+            margin: 30px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .options {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        .result {
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 16px;
+        }
+        .button-container {
+            margin-top: 30px;
+        }
+        .start-button {
+            background-color: #0072bb; /* Estonian flag color (blue) */
+            color: white;
+            padding: 12px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: auto; /* Adjusted the width to auto */
+        }
+        .start-button:hover {
+            background-color: #005f8f;
+        }
+    </style>
+    <script>
+        const questions = [
+            { question: "koer", correct: "dog", options: ["cat", "dog", "bird", "rabbit"] },
+            { question: "kass", correct: "cat", options: ["cat", "dog", "horse", "fish"] },
+            { question: "hobune", correct: "horse", options: ["pig", "cat", "rabbit", "horse"] },
+            { question: "lind", correct: "bird", options: ["dog", "rabbit", "bird", "fish"] },
+            { question: "jänes", correct: "rabbit", options: ["dog", "horse", "rabbit", "mouse"] },
+            { question: "sea", correct: "fish", options: ["fish", "bird", "rabbit", "cat"] },
+            { question: "lehm", correct: "cow", options: ["cow", "pig", "sheep", "horse"] },
+            { question: "kits", correct: "goat", options: ["goat", "sheep", "cow", "dog"] },
+            { question: "hobune", correct: "horse", options: ["cat", "horse", "pig", "cow"] },
+            { question: "siga", correct: "pig", options: ["cow", "dog", "pig", "sheep"] },
+            { question: "lõvi", correct: "lion", options: ["bear", "lion", "tiger", "cat"] },
+            { question: "tiiger", correct: "tiger", options: ["lion", "tiger", "leopard", "panther"] },
+            { question: "karu", correct: "bear", options: ["rabbit", "bear", "dog", "cat"] },
+            { question: "apelsiin", correct: "orangutan", options: ["monkey", "orangutan", "chimpanzee", "gorilla"] },
+            { question: "madu", correct: "snake", options: ["lizard", "frog", "snake", "worm"] },
+            { question: "elevant", correct: "elephant", options: ["elephant", "hippopotamus", "giraffe", "camel"] },
+            { question: "krokodill", correct: "crocodile", options: ["crocodile", "alligator", "lizard", "turtle"] },
+            { question: "pingviin", correct: "penguin", options: ["parrot", "penguin", "crow", "duck"] },
+            { question: "panda", correct: "panda", options: ["bear", "panda", "koala", "rabbit"] },
+            { question: "koala", correct: "koala", options: ["koala", "kangaroo", "bear", "panda"] },
+            { question: "jääkaru", correct: "polar bear", options: ["polar bear", "bear", "wolf", "tiger"] },
+            { question: "kiil", correct: "dragonfly", options: ["bee", "dragonfly", "butterfly", "ant"] },
+            { question: "liblikas", correct: "butterfly", options: ["butterfly", "moth", "dragonfly", "beetle"] },
+            { question: "mesilane", correct: "bee", options: ["wasp", "bee", "fly", "ant"] },
+            { question: "herilane", correct: "wasp", options: ["bee", "ant", "wasp", "mosquito"] },
+            { question: "sipelgas", correct: "ant", options: ["beetle", "ant", "fly", "mosquito"] },
+            { question: "kärbes", correct: "fly", options: ["bee", "fly", "dragonfly", "moth"] },
+            { question: "uss", correct: "worm", options: ["worm", "snake", "eagle", "lizard"] },
+            { question: "jõehobu", correct: "hippopotamus", options: ["elephant", "hippopotamus", "rhino", "giraffe"] },
+            { question: "zebra", correct: "zebra", options: ["zebra", "donkey", "horse", "camel"] },
+            { question: "kaelkirjak", correct: "giraffe", options: ["giraffe", "elephant", "camel", "horse"] }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function generateQuiz() {
+            const quizContainer = document.getElementById("quiz");
+            quizContainer.innerHTML = "";
+
+            questions.forEach((q, index) => {
+                shuffleArray(q.options);
+
+                const questionDiv = document.createElement("div");
+                questionDiv.className = "question";
+                questionDiv.innerHTML = `<p><strong>${index + 1}. ${q.question}</strong></p>`;
+
+                const optionsDiv = document.createElement("div");
+                optionsDiv.className = "options";
+
+                q.options.forEach(option => {
+                    const label = document.createElement("label");
+
+                    const input = document.createElement("input");
+                    input.type = "radio";
+                    input.name = `q${index}`;
+                    input.value = option;
+                    input.dataset.correct = option === q.correct;
+                    input.onclick = checkAnswer;
+
+                    label.appendChild(input);
+                    label.appendChild(document.createTextNode(" " + option));
+
+                    optionsDiv.appendChild(label);
+                });
+
+                const resultDiv = document.createElement("p");
+                resultDiv.id = `result${index}`;
+                resultDiv.className = "result";
+                questionDiv.appendChild(optionsDiv);
+                questionDiv.appendChild(resultDiv);
+
+                quizContainer.appendChild(questionDiv);
+            });
+        }
+
+        function checkAnswer(event) {
+            const selected = event.target;
+            const resultDiv = document.getElementById(`result${selected.name.substring(1)}`);
+
+            if (selected.dataset.correct === "true") {
+                resultDiv.textContent = "✅ Õige!";
+                resultDiv.style.color = "green";
+            } else {
+                resultDiv.textContent = "❌ Vale, proovi uuesti!";
+                resultDiv.style.color = "red";
+            }
+        }
+
+        window.onload = generateQuiz;
+    </script>
+</head>
+<body>
+    <div class="quiz-container">
+        <h2>Estonian Language Quiz: Animals</h2>
+        <div id="quiz"></div>
+        <div class="button-container">
+            <button class="start-button" onclick="window.location.href='index.html'">Main Page</button>
+        </div>
+    </div>
+</body>
+</html>
