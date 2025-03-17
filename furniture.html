@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estonian Language Quiz: Furniture</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        .quiz-container {
+            width: 60%;
+            background: white;
+            margin: 30px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .options {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        .result {
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 16px;
+        }
+        .button-container {
+            margin-top: 30px;
+        }
+        .start-button {
+            background-color: #0072bb; /* Estonian flag color (blue) */
+            color: white;
+            padding: 12px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: auto; /* Adjusted the width to auto */
+        }
+        .start-button:hover {
+            background-color: #005f8f;
+        }
+    </style>
+    <script>
+        const questions = [
+            { question: "diivan", correct: "sofa", options: ["table", "sofa", "chair", "bed"] },
+            { question: "tool", correct: "chair", options: ["sofa", "table", "chair", "couch"] },
+            { question: "voodi", correct: "bed", options: ["sofa", "bed", "wardrobe", "desk"] },
+            { question: "laud", correct: "table", options: ["table", "sofa", "chair", "desk"] },
+            { question: "kapp", correct: "wardrobe", options: ["cupboard", "shelf", "wardrobe", "drawers"] },
+            { question: "riiul", correct: "shelf", options: ["shelf", "cabinet", "wardrobe", "sofa"] },
+            { question: "tugitool", correct: "armchair", options: ["armchair", "sofa", "table", "bed"] },
+            { question: "lamp", correct: "lamp", options: ["light", "lamp", "fan", "heater"] },
+            { question: "peegel", correct: "mirror", options: ["mirror", "frame", "painting", "clock"] },
+            { question: "vaip", correct: "carpet", options: ["rug", "carpet", "mat", "blanket"] },
+            { question: "mattress", correct: "mattress", options: ["pillow", "mattress", "blanket", "sheet"] },
+            { question: "padjake", correct: "pillow", options: ["pillow", "blanket", "sheet", "mattress"] },
+            { question: "lauamatt", correct: "tablecloth", options: ["tablecloth", "napkin", "placemat", "table runner"] },
+            { question: "kardinad", correct: "curtains", options: ["curtains", "blinds", "shades", "drapes"] },
+            { question: "akna raam", correct: "window frame", options: ["window frame", "door frame", "wall", "window"] },
+            { question: "seinakapp", correct: "closet", options: ["closet", "shelf", "cabinet", "wardrobe"] },
+            { question: "tualett", correct: "toilet", options: ["toilet", "sink", "shower", "bathtub"] },
+            { question: "kraan", correct: "tap", options: ["tap", "sink", "faucet", "shower"] },
+            { question: "kamin", correct: "fireplace", options: ["fireplace", "stove", "oven", "grill"] },
+            { question: "külmik", correct: "refrigerator", options: ["refrigerator", "microwave", "stove", "oven"] },
+            { question: "ahi", correct: "oven", options: ["stove", "oven", "microwave", "fridge"] },
+            { question: "pesumasin", correct: "washing machine", options: ["washing machine", "dryer", "iron", "dishwasher"] },
+            { question: "kuivati", correct: "dryer", options: ["dryer", "iron", "fridge", "microwave"] },
+            { question: "külmutaja", correct: "freezer", options: ["freezer", "fridge", "oven", "microwave"] },
+            { question: "laua jalg", correct: "table leg", options: ["table leg", "chair leg", "cabinet leg", "bed frame"] },
+            { question: "voodi jalg", correct: "bed frame", options: ["bed frame", "sofa frame", "table frame", "chair frame"] },
+            { question: "raamatukapp", correct: "bookshelf", options: ["bookshelf", "cabinet", "closet", "shelf"] },
+            { question: "sügavkülmik", correct: "deep freezer", options: ["deep freezer", "refrigerator", "oven", "microwave"] },
+            { question: "põrandalamp", correct: "floor lamp", options: ["floor lamp", "table lamp", "ceiling light", "desk lamp"] },
+            { question: "töölaualamp", correct: "desk lamp", options: ["desk lamp", "floor lamp", "table lamp", "ceiling light"] },
+            { question: "vann", correct: "bathtub", options: ["shower", "bathtub", "sink", "toilet"] }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function generateQuiz() {
+            const quizContainer = document.getElementById("quiz");
+            quizContainer.innerHTML = "";
+
+            questions.forEach((q, index) => {
+                shuffleArray(q.options);
+
+                const questionDiv = document.createElement("div");
+                questionDiv.className = "question";
+                questionDiv.innerHTML = `<p><strong>${index + 1}. ${q.question}</strong></p>`;
+
+                const optionsDiv = document.createElement("div");
+                optionsDiv.className = "options";
+
+                q.options.forEach(option => {
+                    const label = document.createElement("label");
+
+                    const input = document.createElement("input");
+                    input.type = "radio";
+                    input.name = `q${index}`;
+                    input.value = option;
+                    input.dataset.correct = option === q.correct;
+                    input.onclick = checkAnswer;
+
+                    label.appendChild(input);
+                    label.appendChild(document.createTextNode(" " + option));
+
+                    optionsDiv.appendChild(label);
+                });
+
+                const resultDiv = document.createElement("p");
+                resultDiv.id = `result${index}`;
+                resultDiv.className = "result";
+                questionDiv.appendChild(optionsDiv);
+                questionDiv.appendChild(resultDiv);
+
+                quizContainer.appendChild(questionDiv);
+            });
+        }
+
+        function checkAnswer(event) {
+            const selected = event.target;
+            const resultDiv = document.getElementById(`result${selected.name.substring(1)}`);
+
+            if (selected.dataset.correct === "true") {
+                resultDiv.textContent = "✅ Õige!";
+                resultDiv.style.color = "green";
+            } else {
+                resultDiv.textContent = "❌ Vale, proovi uuesti!";
+                resultDiv.style.color = "red";
+            }
+        }
+
+        window.onload = generateQuiz;
+    </script>
+</head>
+<body>
+    <div class="quiz-container">
+        <h2>Estonian Language Quiz: Furniture</h2>
+        <div id="quiz"></div>
+        <div class="button-container">
+            <button class="start-button" onclick="window.location.href='index.html'">Main Page</button>
+        </div>
+    </div>
+</body>
+</html>
