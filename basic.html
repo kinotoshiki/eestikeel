@@ -40,6 +40,23 @@
             gap: 5px;
             font-size: 16px;
         }
+        .button-container {
+            margin-top: 30px;
+        }
+        .start-button {
+            background-color: #0072bb; /* Estonian flag color (blue) */
+            color: white;
+            padding: 12px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: auto; /* Adjusted the width to auto */
+        }
+        .start-button:hover {
+            background-color: #005f8f;
+        }
     </style>
     <script>
         const questions = [
@@ -162,6 +179,9 @@
     <div class="quiz-container">
         <h2>Estonian Language Quiz: Basic Phrases</h2>
         <div id="quiz"></div>
+        <div class="button-container">
+            <button class="start-button" onclick="window.location.href='index.html'">Main Page</button>
+        </div>
     </div>
 </body>
 </html>
