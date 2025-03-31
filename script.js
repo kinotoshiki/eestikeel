@@ -16,6 +16,8 @@ if (scriptTag) {
     console.error("No script tag with data-quiz found.");
 }
 
+console.log("Quiz data in script.js:", quizData);
+
 // script.js - Main script for handling the quiz
 
 let quizData = [];
