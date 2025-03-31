@@ -1,11 +1,20 @@
+// デバッグ: scriptタグの data-quiz 属性を取得
 const scriptTag = document.querySelector('script[data-quiz]');
-console.log("Script tag:", scriptTag);
+console.log("Script tag found:", scriptTag);
+
 if (scriptTag) {
-    console.log("Data-quiz attribute:", scriptTag.getAttribute('data-quiz'));
+    const quizType = scriptTag.getAttribute('data-quiz');
+    console.log("data-quiz attribute value:", quizType);
+
+    if (quizData[quizType]) {
+        console.log("Quiz data found:", quizData[quizType]); // 正しくデータが取得できているか？
+        startQuiz(quizData[quizType]); // クイズ開始
+    } else {
+        console.error("Quiz data not found for:", quizType);
+    }
 } else {
     console.error("No script tag with data-quiz found.");
 }
-
 
 // script.js - Main script for handling the quiz
 
