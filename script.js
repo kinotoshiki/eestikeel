@@ -1,3 +1,12 @@
+const scriptTag = document.querySelector('script[data-quiz]');
+console.log("Script tag:", scriptTag);
+if (scriptTag) {
+    console.log("Data-quiz attribute:", scriptTag.getAttribute('data-quiz'));
+} else {
+    console.error("No script tag with data-quiz found.");
+}
+
+
 // script.js - Main script for handling the quiz
 
 let quizData = [];
