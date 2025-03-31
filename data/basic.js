@@ -50,3 +50,5 @@ const quizData = [
     { question: "Mis on su lemmik koht Eestis?", correct: "What is your favorite place in Estonia?", options: ["What is your favorite place in Estonia?", "Do you like Tallinn?", "Do you like Tartu?", "Do you like the countryside?"] },
     { question: "Mis keeles sa räägid?", correct: "What language do you speak?", options: ["What language do you speak?", "Do you speak Estonian?", "Do you speak Russian?", "Do you speak English?"] }
 ];
+
+console.log("Basic quiz data loaded:", quizData["basic"]);
