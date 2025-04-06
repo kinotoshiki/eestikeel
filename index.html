@@ -4,53 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estonian Language Quiz</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            text-align: center;
-        }
-        .quiz-container {
-            width: 60%;
-            background: white;
-            margin: 30px auto;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        h2 {
-            text-align: center;
-        }
-        .button-container {
-            margin-top: 30px;
-        }
-        .start-button {
-            background-color: #0072bb; /* Estonian flag color (blue) */
-            color: white;
-            padding: 12px 30px;
-            font-size: 18px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            width: auto; /* Adjusted the width to auto */
-        }
-        .start-button:hover {
-            background-color: #005f8f;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="quiz-container">
-        <h2>Estonian Language Quiz</h2>
-        <p>Welcome to the Estonian language quiz. Click below to start the quiz!</p>
-        <div class="button-container">
-            <button class="start-button" onclick="window.location.href='basic.html'">Basic Phrases</button>
-            <button class="start-button" onclick="window.location.href='food.html'">Foods</button>
-            <button class="start-button" onclick="window.location.href='colour.html'">Colours</button>
-            <button class="start-button" onclick="window.location.href='animal.html'">Animals</button>
-            <button class="start-button" onclick="window.location.href='furniture.html'">Furniture</button>
-        </div>
+    <div class="container">
+        <h1>Estonian Quiz</h1>
+        <nav>
+            <ul>
+                <li><a href="food.html">Basic Conversation</a></li>
+                <li><a href="food.html">Food</a></li>
+                <li><a href="colors.html">Colors</a></li>
+                <li><a href="animals.html">Animals</a></li>
+                <li><a href="furniture.html">Furniture</a></li>
+            </ul>
+        </nav>
     </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
