@@ -1,81 +1,58 @@
-// デバッグ: scriptタグの data-quiz 属性を取得
-const scriptTag = document.querySelector('script[data-quiz]');
-console.log("Script tag found:", scriptTag);
+// Quiz Data will be loaded based on the quiz specified in the HTML file
+const quizData = {
+    food: [
+        { question: "piim", correct: "milk", options: ["water", "beer", "tea", "coffee"] },
+        { question: "leib", correct: "bread", options: ["cake", "bread", "milk", "coffee"] },
+        { question: "õun", correct: "apple", options: ["banana", "orange", "apple", "pear"] }
+    ],
+    colors: [
+        { question: "punane", correct: "red", options: ["red", "green", "blue", "yellow"] },
+        { question: "sinine", correct: "blue", options: ["blue", "green", "black", "purple"] }
+    ]
+};
 
-if (scriptTag) {
-    const quizType = scriptTag.getAttribute('data-quiz');
-    console.log("data-quiz attribute value:", quizType);
+// Get quiz type from the script tag's data-quiz attribute
+const quizType = document.querySelector('script[data-quiz]').dataset.quiz;
 
-    if (quizData[quizType]) {
-        console.log("Quiz data found:", quizData[quizType]); // 正しくデータが取得できているか？
-        startQuiz(quizData[quizType]); // クイズ開始
-    } else {
-        console.error("Quiz data not found for:", quizType);
-    }
-} else {
-    console.error("No script tag with data-quiz found.");
-}
+// Load the relevant quiz data based on the quizType
+const questions = quizData[quizType];
 
-console.log("Quiz data in script.js:", quizData);
+let currentQuestionIndex = 0;
 
-// script.js - Main script for handling the quiz
-
-let quizData = [];
-
-// Load quiz data dynamically based on the data-quiz attribute
-const scriptTag = document.querySelector("script[data-quiz]");
-const quizCategory = scriptTag ? scriptTag.getAttribute("data-quiz") : null;
-
-if (quizCategory) {
-    const script = document.createElement("script");
-    script.src = `data/${quizCategory}.js`;
-    script.onload = () => {
-        initializeQuiz();
-    };
-    document.head.appendChild(script);
-} else {
-    console.error("Quiz category not specified.");
-}
-
-function initializeQuiz() {
-    if (!quizData || quizData.length === 0) {
-        console.error("No quiz data available.");
-        return;
-    }
-
+function loadQuestion() {
     const questionElement = document.getElementById("question");
-    const optionsContainer = document.getElementById("options");
-    let currentQuestionIndex = 0;
+    const optionsElement = document.getElementById("options");
 
-    function loadQuestion() {
-        const currentQuestion = quizData[currentQuestionIndex];
+    if (currentQuestionIndex < questions.length) {
+        const currentQuestion = questions[currentQuestionIndex];
+
         questionElement.textContent = currentQuestion.question;
+        optionsElement.innerHTML = "";
 
-        optionsContainer.innerHTML = "";
         currentQuestion.options.forEach(option => {
-            const button = document.createElement("button");
-            button.textContent = option;
-            button.classList.add("option-button");
-            button.onclick = () => checkAnswer(option);
-            optionsContainer.appendChild(button);
+            const li = document.createElement("li");
+            li.textContent = option;
+            li.onclick = () => checkAnswer(option);
+            optionsElement.appendChild(li);
         });
+    } else {
+        alert("You have completed the quiz!");
+    }
+}
+
+function checkAnswer(selectedOption) {
+    const correctAnswer = questions[currentQuestionIndex].correct;
+
+    if (selectedOption === correctAnswer) {
+        alert("Correct!");
+    } else {
+        alert("Incorrect. The correct answer is: " + correctAnswer);
     }
 
-    function checkAnswer(selectedOption) {
-        const currentQuestion = quizData[currentQuestionIndex];
-        if (selectedOption === currentQuestion.correct) {
-            alert("Correct!");
-        } else {
-            alert("Wrong! The correct answer is: " + currentQuestion.correct);
-        }
-
-        currentQuestionIndex++;
-        if (currentQuestionIndex < quizData.length) {
-            loadQuestion();
-        } else {
-            alert("Quiz completed!");
-        }
-    }
-
+    currentQuestionIndex++;
     loadQuestion();
 }
+
+document.getElementById("nextBtn").addEventListener("click", loadQuestion);
+
+loadQuestion();
