@@ -1,25 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estonian Language Quiz</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estonian Language Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: white;
+      padding: 20px;
+      margin: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 90%;
+    }
+
+    h1 {
+      text-align: center;
+      color: #005cbf;
+    }
+
+    #question {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .option {
+      display: block;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 12px;
+      margin: 8px 0;
+      width: 100%;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    .option:hover {
+      background-color: #0056b3;
+    }
+
+    #result {
+      text-align: center;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.5em;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Estonian Quiz</h1>
-        <nav>
-            <ul>
-                <li><a href="food.html">Basic Phrases</a></li>
-                <li><a href="food.html">Food</a></li>
-                <li><a href="colors.html">Colors</a></li>
-                <li><a href="animals.html">Animals</a></li>
-                <li><a href="furniture.html">Furniture</a></li>
-            </ul>
-        </nav>
-    </div>
+  <div class="container">
+    <h1>Estonian Quiz</h1>
+    <div id="question">Loading question...</div>
+    <div id="options"></div>
+    <div id="result"></div>
+  </div>
 
-    <script src="script.js"></script>
+  <script>
+    // Example quiz data (replaceable)
+    const quizData = [
+      {
+        question: "piim",
+        correct: "milk",
+        options: ["milk", "water", "tea", "juice"]
+      },
+      {
+        question: "õun",
+        correct: "apple",
+        options: ["banana", "apple", "pear", "peach"]
+      }
+    ];
+
+    let current = 0;
+
+    function loadQuestion() {
+      const q = quizData[current];
+      document.getElementById("question").textContent = q.question;
+
+      const optionsContainer = document.getElementById("options");
+      optionsContainer.innerHTML = "";
+
+      q.options.forEach(option => {
+        const btn = document.createElement("button");
+        btn.className = "option";
+        btn.textContent = option;
+        btn.onclick = () => selectOption(option);
+        optionsContainer.appendChild(btn);
+      });
+    }
+
+    function selectOption(choice) {
+      const isCorrect = choice === quizData[current].correct;
+      const result = document.getElementById("result");
+      result.textContent = isCorrect ? "Correct!" : `Incorrect. Correct answer: ${quizData[current].correct}`;
+
+      setTimeout(() => {
+        result.textContent = "";
+        current = (current + 1) % quizData.length;
+        loadQuestion();
+      }, 1500);
+    }
+
+    loadQuestion();
+  </script>
 </body>
 </html>
