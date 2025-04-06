@@ -1,0 +1,4 @@
+[
+    { "question": "piim", "correct": "milk", "options": ["water", "beer", "tea", "coffee"] },
+    { "question": "leib", "correct": "bread", "options": ["cake", "bread", "milk", "coffee"] }
+]
