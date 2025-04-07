@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Europe Map - Country Names in Estonian</title>
+    <style>
+        .map-container {
+            text-align: center; /* Center-align the content */
+        }
+        .country-name {
+            margin-top: 20px; /* Add space above the country name */
+            font-size: 24px; /* Set the font size for country name */
+            font-weight: bold; /* Make the country name bold */
+        }
+    </style>
+</head>
+<body>
+    <div class="map-container">
+        <h2>Click on a country in the map</h2>
+        <!-- Here, we include the SVG map -->
+        <object id="europe-map" type="image/svg+xml" data="europe-map.svg" width="80%" height="500px"></object>
+        
+        <div id="country-name" class="country-name">Select a country on the map.</div>
+    </div>
+
+    <script>
+        // Mapping of country names to their Estonian equivalents
+        const countryNamesInEstonian = {
+            "france": "Prantsusmaa",
+            "germany": "Saksamaa",
+            "spain": "Hispaania",
+            "italy": "Itaalia",
+            "portugal": "Portugali",
+            "netherlands": "Madalmaad",
+            "belgium": "Belgia",
+            "sweden": "Rootsi",
+            "norway": "Norra",
+            "finland": "Soome",
+            "denmark": "Taani",
+            "poland": "Poola",
+            "austria": "Austria",
+            "switzerland": "Šveits",
+            "hungary": "Ungari",
+            "romania": "Rumeenia",
+            "bulgaria": "Bulgaaria",
+            "serbia": "Serbia",
+            "croatia": "Horvaatia",
+            "ukraine": "Ukraina",
+            "belarus": "Valgevene",
+            "moldova": "Moldova"
+            // You can add more countries here
+        };
+
+        document.getElementById("europe-map").addEventListener("load", function() {
+            const svgDocument = document.getElementById("europe-map").contentDocument;
+            // Set up click event for each country in the SVG map
+            const countries = svgDocument.querySelectorAll("path");
+
+            countries.forEach(country => {
+                country.addEventListener("click", function() {
+                    const countryId = country.id.toLowerCase();  // Get the country id and convert it to lowercase
+                    const countryName = countryNamesInEstonian[countryId] || "Unknown country";  // Get the country name in Estonian or show "Unknown country"
+                    document.getElementById("country-name").textContent = `You clicked: ${countryName}`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
