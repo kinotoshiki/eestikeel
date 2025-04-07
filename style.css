@@ -52,4 +52,10 @@ a:link, a:visited {
     .options {
         text-align: center; /* Center the quiz choices */
     }
+
+    /* Make quiz choices vertical by using block display */
+    .options label {
+        display: block; /* This will stack the options vertically */
+        margin-bottom: 10px; /* Adds space between each option */
+    }
 }
