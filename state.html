@@ -4,7 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Europe Map - Country Names in Estonian</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* General styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin: 20px 0;
+        }
+
+        /* Map container styling */
+        .map-container {
+            margin: 0 auto;
+            padding: 20px;
+            max-width: 1200px; /* Limit the width for larger screens */
+        }
+
+        .country-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        /* Map styling */
+        #europe-map {
+            width: 100%;
+            height: auto;
+            max-height: 600px; /* Limit the maximum height for larger screens */
+            display: block;
+        }
+
+        /* Responsive design for small screens (max width: 768px) */
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 18px; /* Reduce font size for smaller screens */
+            }
+
+            .country-name {
+                font-size: 18px; /* Reduce font size for smaller screens */
+            }
+
+            /* Adjust map height for smaller screens */
+            #europe-map {
+                max-height: 400px; /* Adjust the map height for smaller screens */
+            }
+
+            /* Adjust map container padding for smaller screens */
+            .map-container {
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 16px; /* Further reduce font size on very small screens */
+            }
+
+            .country-name {
+                font-size: 16px; /* Further reduce font size on very small screens */
+            }
+
+            /* Further adjust map height on very small screens */
+            #europe-map {
+                max-height: 300px; /* Adjust the map height further for very small screens */
+            }
+
+            /* Further reduce padding on very small screens */
+            .map-container {
+                padding: 5px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="map-container">
@@ -108,10 +184,17 @@
             countries.forEach(country => {
                 country.addEventListener("click", function() {
                     const countryId = country.id.toUpperCase();  // Get the country ID and convert it to uppercase
-                    const countryNameEstonian = countryNamesInEstonian[countryId] || "Tundmatu riik";  // Get the country name in Estonian
-                    const countryNameEnglish = countryNamesInEnglish[countryId] || "";  // Get the country name in English
+
+                    // Get the country names in Estonian and English, with default values
+                    const countryNameEstonian = countryNamesInEstonian[countryId] || "Tundmatu riik";
+                    const countryNameEnglish = countryNamesInEnglish[countryId] || "Unknown";  // Default to "Unknown" if not found
+
                     // Display the country names in the format "Estonian Name (English Name)"
-                    document.getElementById("country-name").textContent = `${countryNameEstonian} (${countryNameEnglish})`;
+                    if (countryNameEstonian !== undefined && countryNameEnglish !== undefined) {
+                        document.getElementById("country-name").textContent = `${countryNameEstonian} (${countryNameEnglish})`;
+                    } else {
+                        console.error(`Country ID ${countryId} not found in dictionary.`);
+                    }
                 });
             });
         });
