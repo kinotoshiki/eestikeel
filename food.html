@@ -1,17 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Estonian Quiz - Food</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estonian Language Quiz: Foods</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        .quiz-container {
+            width: 60%;
+            background: white;
+            margin: 30px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .options {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        .result {
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 16px;
+        }
+        .button-container {
+            margin-top: 30px;
+        }
+        .start-button {
+            background-color: #0072bb; /* Estonian flag color (blue) */
+            color: white;
+            padding: 12px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: auto; /* Adjusted the width to auto */
+        }
+        .start-button:hover {
+            background-color: #005f8f;
+        }
+    </style>
+    <script>
+        const questions = [
+            { question: "piim", correct: "milk", options: ["water", "beer", "juice", "milk"] },
+            { question: "leib", correct: "bread", options: ["bread", "cake", "cheese", "butter"] },
+            { question: "juust", correct: "cheese", options: ["butter", "cheese", "egg", "meat"] },
+            { question: "kartul", correct: "potato", options: ["onion", "tomato", "potato", "pepper"] },
+            { question: "õun", correct: "apple", options: ["banana", "grape", "apple", "pear"] },
+            { question: "vorst", correct: "sausage", options: ["sausage", "bread", "meat", "fish"] },
+            { question: "kala", correct: "fish", options: ["chicken", "beef", "fish", "pork"] },
+            { question: "pasta", correct: "pasta", options: ["bread", "pasta", "rice", "noodles"] },
+            { question: "supp", correct: "soup", options: ["soup", "salad", "juice", "bread"] },
+            { question: "koogid", correct: "cakes", options: ["cakes", "cookies", "pancakes", "pie"] },
+            { question: "liha", correct: "meat", options: ["fish", "meat", "cheese", "vegetable"] },
+            { question: "õlu", correct: "beer", options: ["wine", "beer", "water", "juice"] },
+            { question: "vein", correct: "wine", options: ["milk", "beer", "wine", "water"] },
+            { question: "kohv", correct: "coffee", options: ["water", "tea", "coffee", "juice"] },
+            { question: "tee", correct: "tea", options: ["milk", "beer", "coffee", "tea"] },
+            { question: "sai", correct: "bun", options: ["bread", "bun", "pie", "cake"] },
+            { question: "salat", correct: "salad", options: ["soup", "salad", "rice", "potato"] },
+            { question: "kapsas", correct: "cabbage", options: ["carrot", "cabbage", "tomato", "lettuce"] },
+            { question: "tomat", correct: "tomato", options: ["carrot", "tomato", "onion", "pepper"] },
+            { question: "kurk", correct: "cucumber", options: ["onion", "cucumber", "garlic", "chili"] },
+            { question: "maasikas", correct: "strawberry", options: ["apple", "banana", "strawberry", "grape"] },
+            { question: "arbuz", correct: "watermelon", options: ["melon", "orange", "watermelon", "lemon"] },
+            { question: "ploom", correct: "plum", options: ["grape", "pear", "plum", "cherry"] },
+            { question: "virsik", correct: "peach", options: ["apple", "peach", "apricot", "cherry"] },
+            { question: "pirn", correct: "pear", options: ["pear", "banana", "orange", "apple"] },
+            { question: "apelsin", correct: "orange", options: ["lemon", "orange", "lime", "grapefruit"] },
+            { question: "martsipan", correct: "marzipan", options: ["marzipan", "caramel", "chocolate", "cake"] },
+            { question: "hõrk", correct: "delicious", options: ["bitter", "delicious", "spicy", "sweet"] },
+            { question: "kaneel", correct: "cinnamon", options: ["nutmeg", "cinnamon", "cardamom", "clove"] },
+            { question: "pipar", correct: "pepper", options: ["salt", "pepper", "vinegar", "sugar"] },
+            { question: "sool", correct: "salt", options: ["sugar", "salt", "pepper", "vinegar"] },
+            { question: "muna", correct: "egg", options: ["meat", "egg", "cheese", "bread"] },
+            { question: "puder", correct: "porridge", options: ["rice", "bread", "porridge", "cake"] },
+            { question: "seened", correct: "mushrooms", options: ["tomato", "potato", "mushrooms", "onion"] },
+            { question: "jogurt", correct: "yogurt", options: ["yogurt", "milk", "cream", "cheese"] },
+            { question: "suitsutatud", correct: "smoked", options: ["fried", "boiled", "smoked", "roasted"] },
+            { question: "karp", correct: "clam", options: ["shrimp", "clam", "fish", "lobster"] },
+            { question: "krevett", correct: "shrimp", options: ["lobster", "fish", "shrimp", "crab"] },
+            { question: "hakkliha", correct: "ground meat", options: ["bacon", "ground meat", "steak", "sausage"] },
+            { question: "õunapirukas", correct: "apple pie", options: ["apple pie", "cherry pie", "pumpkin pie", "blueberry pie"] },
+            { question: "peet", correct: "beetroot", options: ["carrot", "beetroot", "spinach", "cabbage"] },
+            { question: "suvikõrvits", correct: "zucchini", options: ["cucumber", "zucchini", "carrot", "tomato"] },
+            { question: "sibul", correct: "onion", options: ["onion", "garlic", "chili", "lemon"] },
+            { question: "kapsarull", correct: "cabbage roll", options: ["soup", "cabbage roll", "cabbage", "salad"] },
+            { question: "kõrvits", correct: "pumpkin", options: ["pumpkin", "squash", "melon", "cucumber"] },
+            { question: "riis", correct: "rice", options: ["bread", "rice", "pasta", "noodles"] },
+            { question: "noodlid", correct: "noodles", options: ["bread", "noodles", "pasta", "rice"] }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function generateQuiz() {
+            const quizContainer = document.getElementById("quiz");
+            quizContainer.innerHTML = "";
+
+            questions.forEach((q, index) => {
+                shuffleArray(q.options);
+
+                const questionDiv = document.createElement("div");
+                questionDiv.className = "question";
+                questionDiv.innerHTML = `<p><strong>${index + 1}. ${q.question}</strong></p>`;
+
+                const optionsDiv = document.createElement("div");
+                optionsDiv.className = "options";
+
+                q.options.forEach(option => {
+                    const label = document.createElement("label");
+
+                    const input = document.createElement("input");
+                    input.type = "radio";
+                    input.name = `q${index}`;
+                    input.value = option;
+                    input.dataset.correct = option === q.correct;
+                    input.onclick = checkAnswer;
+
+                    label.appendChild(input);
+                    label.appendChild(document.createTextNode(" " + option));
+
+                    optionsDiv.appendChild(label);
+                });
+
+                const resultDiv = document.createElement("p");
+                resultDiv.id = `result${index}`;
+                resultDiv.className = "result";
+                questionDiv.appendChild(optionsDiv);
+                questionDiv.appendChild(resultDiv);
+
+                quizContainer.appendChild(questionDiv);
+            });
+        }
+
+        function checkAnswer(event) {
+            const selected = event.target;
+            const resultDiv = document.getElementById(`result${selected.name.substring(1)}`);
+
+            if (selected.dataset.correct === "true") {
+                resultDiv.textContent = "✅ Õige!";
+                resultDiv.style.color = "green";
+            } else {
+                resultDiv.textContent = "❌ Vale, proovi uuesti!";
+                resultDiv.style.color = "red";
+            }
+        }
+
+        window.onload = generateQuiz;
+    </script>
 </head>
 <body>
-  <div class="container">
-    <h1>Food Quiz</h1>
-    <div id="quiz-container"></div>
-    <button id="next-button">Next</button>
-  </div>
-  <script src="script.js" data-quiz="food"></script>
+    <div class="quiz-container">
+        <h2>Estonian Language Quiz: Foods</h2>
+        <div id="quiz"></div>
+        <div class="button-container">
+            <button class="start-button" onclick="window.location.href='index.html'">Main Page</button>
+        </div>
+    </div>
 </body>
 </html>
