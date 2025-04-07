@@ -8,51 +8,55 @@ body {
 }
 
 h2 {
-    text-align: center;
-}
-
-/* Container styling for the map and country name display */
-.map-container {
-    max-width: 1200px;
-    margin: 0 auto; /* Centers the content */
-    padding: 20px;
-}
-
-/* Styling for the map object */
-object {
-    width: 100%;  /* Make the map responsive */
-    height: auto; /* Adjust height proportionally */
-    max-height: 600px;  /* Maximum height for larger screens */
-}
-
-/* Country name display styling */
-.country-name {
-    margin-top: 20px;
     font-size: 24px;
+    margin: 20px 0;
+}
+
+/* Map container styling */
+.map-container {
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 1200px; /* Limit the width for larger screens */
+}
+
+.country-name {
+    font-size: 20px;
     font-weight: bold;
+    margin-top: 20px;
 }
 
-/* Responsive design for small screens (max-width: 768px) */
+/* Map styling */
+#europe-map {
+    width: 100%;
+    height: auto; /* Adjust height automatically to maintain aspect ratio */
+}
+
+/* Responsive design for small screens (max width: 768px) */
 @media (max-width: 768px) {
-    /* Adjust font size for smaller screens */
+    h2 {
+        font-size: 18px; /* Reduce font size for smaller screens */
+    }
+
     .country-name {
-        font-size: 20px;
+        font-size: 18px; /* Reduce font size for smaller screens */
     }
 
-    /* Ensure the map fits on smaller screens */
-    object {
-        height: 400px; /* Smaller height for mobile */
-    }
-
-    /* Adjust margins and padding for smaller screens */
-    .map-container {
-        padding: 10px;
+    /* Adjust map height for smaller screens */
+    #europe-map {
+        height: 400px; /* Set a smaller height on small screens */
     }
 }
 
-/* Ensuring proper padding and margins for the content */
 @media (max-width: 480px) {
+    h2 {
+        font-size: 16px; /* Further reduce font size on very small screens */
+    }
+
     .country-name {
-        font-size: 18px;  /* Even smaller font size for very small screens */
+        font-size: 16px; /* Further reduce font size on very small screens */
+    }
+
+    #europe-map {
+        height: 300px; /* Further reduce map height on very small screens */
     }
 }
