@@ -1,21 +1,20 @@
 /* General layout */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #fff;  /* Set background to white */
     text-align: center;
     margin: 0;
     padding: 0;
 }
 
-/* Quiz container (removed border) */
+/* Quiz container (no background or border) */
 .quiz-container {
     width: 90%;  /* Set width to 90% for mobile */
     max-width: 800px;  /* Set maximum width for desktop */
-    background: white;
     margin: 30px auto;
     padding: 20px;
     border-radius: 10px;
-    /* Removed box-shadow and border */
+    /* Removed background, border, and box-shadow */
 }
 
 /* Heading link styling */
@@ -24,8 +23,12 @@ h2 a {
     color: black;  /* Set link color to black */
 }
 
+h2 a:visited {
+    color: black;  /* Ensure visited link stays black */
+}
+
 h2 a:hover {
-    color: black;  /* Keep the link color black on hover */
+    color: black;  /* Ensure hover color stays black */
 }
 
 /* Question styling */
