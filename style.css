@@ -57,5 +57,12 @@ a:link, a:visited {
     .options label {
         display: block; /* This will stack the options vertically */
         margin-bottom: 10px; /* Adds space between each option */
+        text-align: left; /* Align the text to the left inside each label */
+    }
+
+    /* Style the radio buttons (optional: to make them smaller or aligned properly) */
+    .options input[type="radio"] {
+        margin-right: 10px; /* Adds space between the radio button and text */
+        vertical-align: middle; /* Aligns the radio button vertically with the text */
     }
 }
