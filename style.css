@@ -1,67 +1,25 @@
-/* General layout */
+/* General styling */
 body {
     font-family: Arial, sans-serif;
-    background-color: #fff;  /* Set background to white */
+    background-color: white;
     text-align: center;
-    margin: 0;
-    padding: 0;
 }
 
-/* Quiz container (no background or border) */
-.quiz-container {
-    width: 90%;  /* Set width to 90% for mobile */
-    max-width: 800px;  /* Set maximum width for desktop */
-    margin: 30px auto;
-    padding: 20px;
-    border-radius: 10px;
-    /* Removed background, border, and box-shadow */
+h2 {
+    text-align: center;
 }
 
-/* Heading link styling */
-h2 a {
-    text-decoration: none;  /* Remove underline from link */
-    color: black;  /* Set link color to black */
-}
-
-h2 a:visited {
-    color: black;  /* Ensure visited link stays black */
-}
-
-h2 a:hover {
-    color: black;  /* Ensure hover color stays black */
-}
-
-/* Question styling */
-.question {
-    margin-bottom: 20px;
-}
-
-/* Option layout */
-.options {
-    display: flex;
-    flex-wrap: wrap;  /* Ensure options wrap on mobile */
+/* Button container styling */
+.button-container {
+    margin-top: 30px;
+    display: flex; /* Default flex row (horizontal layout) */
     justify-content: center;
-    gap: 15px;
-    margin-top: 10px;
+    gap: 20px; /* Adds space between buttons */
 }
 
-/* Result styling */
-.result {
-    font-weight: bold;
-    margin-top: 5px;
-}
-
-/* Label styling */
-label {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 16px;
-}
-
-/* Button styling */
+/* Styling for buttons */
 .start-button {
-    background-color: #0072bb;
+    background-color: #0072bb; /* Estonian flag color (blue) */
     color: white;
     padding: 12px 30px;
     font-size: 18px;
@@ -76,17 +34,11 @@ label {
     background-color: #005f8f;
 }
 
-/* Mobile responsiveness */
+/* Responsive design for small screens */
 @media (max-width: 768px) {
-    /* Adjust quiz container width for mobile */
-    .quiz-container {
-        width: 95%;  /* Increase width on mobile */
-        padding: 10px;  /* Reduce padding for mobile */
-    }
-
-    /* Make options stack vertically on mobile */
-    .options {
-        flex-direction: column;
-        gap: 10px;
+    /* Stack the buttons vertically on smaller screens */
+    .button-container {
+        flex-direction: column; /* Change the flex direction to column for vertical layout */
+        gap: 10px; /* Adds space between buttons when stacked vertically */
     }
 }
