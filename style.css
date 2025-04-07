@@ -3,10 +3,29 @@ body {
     font-family: Arial, sans-serif;
     background-color: white;
     text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
+/* Heading styling */
 h2 {
     text-align: center;
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+/* Map container styling */
+.map-container {
+    text-align: center;
+    padding: 20px;
+}
+
+/* Styling for country name display */
+.country-name {
+    margin-top: 20px;
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
 }
 
 /* Button container styling */
@@ -42,10 +61,15 @@ a:link, a:visited {
 
 /* Responsive design for small screens (max width: 768px) */
 @media (max-width: 768px) {
-    /* Stack the buttons vertically */
-    .button-container {
-        flex-direction: column !important; /* Force the flex-direction to column */
-        gap: 10px; /* Adds space between buttons when stacked vertically */
+    /* Adjust the map's width to 100% and set the height to auto */
+    object {
+        width: 100%;
+        height: auto;
+    }
+
+    /* Make the country name font size smaller */
+    .country-name {
+        font-size: 28px;
     }
 
     /* Center align quiz choices */
@@ -67,20 +91,21 @@ a:link, a:visited {
     }
 }
 
-.map-container {
-    text-align: center;
-    font-family: Arial, sans-serif;
-}
+/* Further responsive design for very small screens (max width: 480px) */
+@media (max-width: 480px) {
+    /* Adjust the map's width to 100% */
+    object {
+        width: 100%;
+        height: auto;
+    }
 
-h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
+    /* Make the country name font size smaller */
+    .country-name {
+        font-size: 24px;
+    }
 
-.country-name {
-    margin-top: 20px;
-    font-size: 30px;
-    font-weight: bold;
-    color: #333;
-    padding: 20px;
+    /* Further reduce the font size for the heading */
+    h2 {
+        font-size: 20px;
+    }
 }
