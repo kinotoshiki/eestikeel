@@ -186,8 +186,8 @@
                     const countryId = country.id.toUpperCase();  // Get the country ID and convert it to uppercase
 
                     // Get the country names in Estonian and English, with default values
-                    const countryNameEstonian = countryNamesInEstonian[countryId] || "Tundmatu riik";
-                    const countryNameEnglish = countryNamesInEnglish[countryId] || "Unknown";  // Default to "Unknown" if not found
+                    const countryNameEstonian = countryNamesInEstonian[countryId] || "";
+                    const countryNameEnglish = countryNamesInEnglish[countryId] || "";  // Default to "Unknown" if not found
 
                     // Display the country names in the format "Estonian Name (English Name)"
                     if (countryNameEstonian !== undefined && countryNameEnglish !== undefined) {
