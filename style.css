@@ -1,67 +1,88 @@
+/* Overall layout */
 body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
-.container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 2rem;
+/* Quiz container */
+.quiz-container {
+    width: 90%;  /* Set width to 90% to provide space on mobile devices */
+    max-width: 800px;  /* Set a maximum width */
+    background: white;
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-  color: #003399;
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
+/* Heading link */
+h2 a {
+    text-decoration: none;  /* Remove underline */
+    color: black;  /* Set link color to black */
 }
 
-#question {
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
+h2 a:hover {
+    color: black;  /* Keep color black on hover */
 }
 
-#options button {
-  display: block;
-  width: 100%;
-  max-width: 300px;
-  margin: 0.5rem auto;
-  padding: 0.75rem;
-  font-size: 1rem;
-  background-color: #3399ff;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s;
+/* Question */
+.question {
+    margin-bottom: 20px;
 }
 
-#options button:hover {
-  background-color: #007acc;
+/* Options layout */
+.options {
+    display: flex;
+    flex-wrap: wrap;  /* Allow wrapping of options to prevent them from overflowing on mobile */
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
 }
 
-#result {
-  margin-top: 1rem;
-  font-weight: bold;
+/* Result text */
+.result {
+    font-weight: bold;
+    margin-top: 5px;
 }
 
-#next-btn {
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  background-color: #0055cc;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+/* Label styling */
+label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 16px;
 }
 
-.back-link {
-  display: inline-block;
-  margin-top: 2rem;
-  color: #003399;
-  text-decoration: none;
-  font-size: 0.95rem;
+/* Button styling */
+.start-button {
+    background-color: #0072bb;
+    color: white;
+    padding: 12px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: auto;
+}
+
+.start-button:hover {
+    background-color: #005f8f;
+}
+
+/* Mobile-friendly styles */
+@media (max-width: 768px) {
+    /* Adjust quiz container width for mobile */
+    .quiz-container {
+        width: 95%;  /* Change width to 95% */
+    }
+
+    /* Stack options vertically on mobile */
+    .options {
+        flex-direction: column;
+        gap: 10px;
+    }
 }
