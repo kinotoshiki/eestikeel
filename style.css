@@ -12,7 +12,7 @@ h2 {
 /* Button container styling */
 .button-container {
     margin-top: 30px;
-    display: flex; /* Default flex row (horizontal layout) */
+    display: flex; /* Default horizontal layout (row) */
     justify-content: center;
     gap: 20px; /* Adds space between buttons */
 }
@@ -34,11 +34,22 @@ h2 {
     background-color: #005f8f;
 }
 
-/* Responsive design for small screens */
+/* Visit link color set to black */
+a:link, a:visited {
+    color: black !important; /* Force links to stay black */
+    text-decoration: none;
+}
+
+/* Responsive design for small screens (max width: 768px) */
 @media (max-width: 768px) {
-    /* Stack the buttons vertically on smaller screens */
+    /* Stack the buttons vertically */
     .button-container {
-        flex-direction: column; /* Change the flex direction to column for vertical layout */
+        flex-direction: column !important; /* Force the flex-direction to column */
         gap: 10px; /* Adds space between buttons when stacked vertically */
+    }
+
+    /* Center align quiz choices */
+    .options {
+        text-align: center; /* Center the quiz choices */
     }
 }
