@@ -3,67 +3,66 @@ body {
     font-family: Arial, sans-serif;
     background-color: white;
     text-align: center;
-    margin: 0;
-    padding: 0;
 }
 
 h2 {
-    font-size: 24px;
-    margin: 20px 0;
+    text-align: center;
 }
 
-/* Map container styling */
-.map-container {
-    margin: 0 auto;
-    padding: 20px;
-    max-width: 1200px; /* Limit the width for larger screens */
+/* Button container styling */
+.button-container {
+    margin-top: 30px;
+    display: flex; /* Default horizontal layout (row) */
+    justify-content: center;
+    gap: 20px; /* Adds space between buttons */
 }
 
-.country-name {
-    font-size: 20px;
-    font-weight: bold;
-    margin-top: 20px;
+/* Styling for buttons */
+.start-button {
+    background-color: #0072bb; /* Estonian flag color (blue) */
+    color: white;
+    padding: 12px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: auto;
 }
 
-/* Map styling */
-#europe-map {
-    width: 100%;
-    height: auto;
-    max-height: 600px; /* Limit the maximum height for larger screens */
+.start-button:hover {
+    background-color: #005f8f;
 }
 
-#europe-map object {
-    width: 100%;
-    height: 100%;
+/* Visit link color set to black */
+a:link, a:visited {
+    color: black !important; /* Force links to stay black */
+    text-decoration: none;
 }
 
 /* Responsive design for small screens (max width: 768px) */
 @media (max-width: 768px) {
-    h2 {
-        font-size: 18px; /* Reduce font size for smaller screens */
+    /* Stack the buttons vertically */
+    .button-container {
+        flex-direction: column !important; /* Force the flex-direction to column */
+        gap: 10px; /* Adds space between buttons when stacked vertically */
     }
 
-    .country-name {
-        font-size: 18px; /* Reduce font size for smaller screens */
+    /* Center align quiz choices */
+    .options {
+        text-align: center; /* Center the quiz choices */
     }
 
-    /* Adjust map height for smaller screens */
-    #europe-map {
-        max-height: 400px; /* Adjust the map height for smaller screens */
-    }
-}
-
-@media (max-width: 480px) {
-    h2 {
-        font-size: 16px; /* Further reduce font size on very small screens */
+    /* Make quiz choices vertical by using block display */
+    .options label {
+        display: block; /* This will stack the options vertically */
+        margin-bottom: 10px; /* Adds space between each option */
+        text-align: left; /* Align the text to the left inside each label */
     }
 
-    .country-name {
-        font-size: 16px; /* Further reduce font size on very small screens */
-    }
-
-    /* Further adjust map height on very small screens */
-    #europe-map {
-        max-height: 300px; /* Adjust the map height further for small screens */
+    /* Style the radio buttons (optional: to make them smaller or aligned properly) */
+    .options input[type="radio"] {
+        margin-right: 10px; /* Adds space between the radio button and text */
+        vertical-align: middle; /* Aligns the radio button vertically with the text */
     }
 }
