@@ -1,4 +1,4 @@
-/* Overall layout */
+/* General layout */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -7,42 +7,42 @@ body {
     padding: 0;
 }
 
-/* Quiz container */
+/* Quiz container (removed border) */
 .quiz-container {
-    width: 90%;  /* Set width to 90% to provide space on mobile devices */
-    max-width: 800px;  /* Set a maximum width */
+    width: 90%;  /* Set width to 90% for mobile */
+    max-width: 800px;  /* Set maximum width for desktop */
     background: white;
     margin: 30px auto;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    /* Removed box-shadow and border */
 }
 
-/* Heading link */
+/* Heading link styling */
 h2 a {
-    text-decoration: none;  /* Remove underline */
+    text-decoration: none;  /* Remove underline from link */
     color: black;  /* Set link color to black */
 }
 
 h2 a:hover {
-    color: black;  /* Keep color black on hover */
+    color: black;  /* Keep the link color black on hover */
 }
 
-/* Question */
+/* Question styling */
 .question {
     margin-bottom: 20px;
 }
 
-/* Options layout */
+/* Option layout */
 .options {
     display: flex;
-    flex-wrap: wrap;  /* Allow wrapping of options to prevent them from overflowing on mobile */
+    flex-wrap: wrap;  /* Ensure options wrap on mobile */
     justify-content: center;
     gap: 15px;
     margin-top: 10px;
 }
 
-/* Result text */
+/* Result styling */
 .result {
     font-weight: bold;
     margin-top: 5px;
@@ -73,14 +73,15 @@ label {
     background-color: #005f8f;
 }
 
-/* Mobile-friendly styles */
+/* Mobile responsiveness */
 @media (max-width: 768px) {
     /* Adjust quiz container width for mobile */
     .quiz-container {
-        width: 95%;  /* Change width to 95% */
+        width: 95%;  /* Increase width on mobile */
+        padding: 10px;  /* Reduce padding for mobile */
     }
 
-    /* Stack options vertically on mobile */
+    /* Make options stack vertically on mobile */
     .options {
         flex-direction: column;
         gap: 10px;
