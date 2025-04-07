@@ -10,13 +10,12 @@
     <div class="map-container">
         <h2>Click on a country in the map</h2>
         <!-- Here, we include the SVG map -->
-        <object id="europe-map" type="image/svg+xml" data="europe.svg" width="100%" height="600px"></object>
+        <object id="europe-map" type="image/svg+xml" data="europe.svg" width="100%" height="auto"></object>
         
         <div id="country-name" class="country-name">Select a country on the map.</div>
     </div>
 
     <script>
-        // Mapping country codes to their names in Estonian
         const countryNamesInEstonian = {
             "AL": "Albaania",
             "AT": "Austria",
@@ -30,18 +29,18 @@
             "DK": "Taani",
             "EE": "Eesti",
             "FI": "Soome",
-            "GB": "Suurbritannia",
+            "GB": "Ühendkuningriik",
             "GR": "Kreeka",
             "HR": "Horvaatia",
             "HU": "Ungari",
             "IE": "Iirimaa",
-            "IS": "Island",
+            "IS": "Islandi",
             "IT": "Itaalia",
             "LT": "Leedu",
             "LU": "Luksemburg",
             "LV": "Läti",
             "MD": "Moldova",
-            "MK": "Põhja-Makedoonia",
+            "MK": "Makedoonia",
             "ME": "Montenegro",
             "NL": "Holland",
             "NO": "Norra",
@@ -57,61 +56,15 @@
             "ES": "Hispaania"
         };
 
-        // Mapping country codes to their names in English
-        const countryNamesInEnglish = {
-            "AL": "Albania",
-            "AT": "Austria",
-            "BE": "Belgium",
-            "BG": "Bulgaria",
-            "BA": "Bosnia and Herz.",
-            "BY": "Belarus",
-            "CH": "Switzerland",
-            "CZ": "Czech Rep.",
-            "DE": "Germany",
-            "DK": "Denmark",
-            "EE": "Estonia",
-            "FI": "Finland",
-            "GB": "United Kingdom",
-            "GR": "Greece",
-            "HR": "Croatia",
-            "HU": "Hungary",
-            "IE": "Ireland",
-            "IS": "Iceland",
-            "IT": "Italy",
-            "LT": "Lithuania",
-            "LU": "Luxembourg",
-            "LV": "Latvia",
-            "MD": "Moldova",
-            "MK": "Macedonia",
-            "ME": "Montenegro",
-            "NL": "Netherlands",
-            "NO": "Norway",
-            "PL": "Poland",
-            "PT": "Portugal",
-            "RO": "Romania",
-            "RS": "Serbia",
-            "SK": "Slovakia",
-            "SI": "Slovenia",
-            "SE": "Sweden",
-            "UA": "Ukraine",
-            "FR": "France",
-            "ES": "Spain"
-        };
-
-        // Event listener for when the SVG map is loaded
         document.getElementById("europe-map").addEventListener("load", function() {
             const svgDocument = document.getElementById("europe-map").contentDocument;
-            // Select all countries in the SVG by their <path> elements
             const countries = svgDocument.querySelectorAll("path");
 
-            // Add click event listeners for each country
             countries.forEach(country => {
                 country.addEventListener("click", function() {
-                    const countryId = country.id.toUpperCase();  // Get the country ID and convert it to uppercase
-                    const countryNameEstonian = countryNamesInEstonian[countryId] || "Tundmatu riik";  // Get the country name in Estonian
-                    const countryNameEnglish = countryNamesInEnglish[countryId] || "";  // Get the country name in English
-                    // Display the country names in the format "Estonian Name (English Name)"
-                    document.getElementById("country-name").textContent = `${countryNameEstonian} (${countryNameEnglish})`;
+                    const countryId = country.id.toUpperCase();
+                    const countryName = countryNamesInEstonian[countryId] || "Tundmatu riik";
+                    document.getElementById("country-name").textContent = `${countryName} (${countryId})`;
                 });
             });
         });
