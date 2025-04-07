@@ -28,7 +28,15 @@ h2 {
 /* Map styling */
 #europe-map {
     width: 100%;
-    height: auto; /* Adjust height automatically to maintain aspect ratio */
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio (can adjust to fit the map's actual ratio) */
+    position: relative;
+}
+
+#europe-map object {
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 
 /* Responsive design for small screens (max width: 768px) */
@@ -43,7 +51,7 @@ h2 {
 
     /* Adjust map height for smaller screens */
     #europe-map {
-        height: 400px; /* Set a smaller height on small screens */
+        padding-bottom: 75%; /* Adjust the aspect ratio for smaller screens */
     }
 }
 
@@ -56,7 +64,8 @@ h2 {
         font-size: 16px; /* Further reduce font size on very small screens */
     }
 
+    /* Further adjust map height on very small screens */
     #europe-map {
-        height: 300px; /* Further reduce map height on very small screens */
+        padding-bottom: 80%; /* Adjust the aspect ratio further for small screens */
     }
 }
