@@ -7,105 +7,52 @@ body {
     padding: 0;
 }
 
-/* Heading styling */
 h2 {
     text-align: center;
-    font-size: 24px;
-    margin-top: 20px;
 }
 
-/* Map container styling */
+/* Container styling for the map and country name display */
 .map-container {
-    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto; /* Centers the content */
     padding: 20px;
 }
 
-/* Styling for country name display */
+/* Styling for the map object */
+object {
+    width: 100%;  /* Make the map responsive */
+    height: auto; /* Adjust height proportionally */
+    max-height: 600px;  /* Maximum height for larger screens */
+}
+
+/* Country name display styling */
 .country-name {
     margin-top: 20px;
-    font-size: 36px;
+    font-size: 24px;
     font-weight: bold;
-    color: #333;
 }
 
-/* Button container styling */
-.button-container {
-    margin-top: 30px;
-    display: flex; /* Default horizontal layout (row) */
-    justify-content: center;
-    gap: 20px; /* Adds space between buttons */
-}
-
-/* Styling for buttons */
-.start-button {
-    background-color: #0072bb; /* Estonian flag color (blue) */
-    color: white;
-    padding: 12px 30px;
-    font-size: 18px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    width: auto;
-}
-
-.start-button:hover {
-    background-color: #005f8f;
-}
-
-/* Visit link color set to black */
-a:link, a:visited {
-    color: black !important; /* Force links to stay black */
-    text-decoration: none;
-}
-
-/* Responsive design for small screens (max width: 768px) */
+/* Responsive design for small screens (max-width: 768px) */
 @media (max-width: 768px) {
-    /* Adjust the map's width to 100% and set the height to auto */
-    object {
-        width: 100%;
-        height: auto;
-    }
-
-    /* Make the country name font size smaller */
+    /* Adjust font size for smaller screens */
     .country-name {
-        font-size: 28px;
+        font-size: 20px;
     }
 
-    /* Center align quiz choices */
-    .options {
-        text-align: center; /* Center the quiz choices */
+    /* Ensure the map fits on smaller screens */
+    object {
+        height: 400px; /* Smaller height for mobile */
     }
 
-    /* Make quiz choices vertical by using block display */
-    .options label {
-        display: block; /* This will stack the options vertically */
-        margin-bottom: 10px; /* Adds space between each option */
-        text-align: left; /* Align the text to the left inside each label */
-    }
-
-    /* Style the radio buttons (optional: to make them smaller or aligned properly) */
-    .options input[type="radio"] {
-        margin-right: 10px; /* Adds space between the radio button and text */
-        vertical-align: middle; /* Aligns the radio button vertically with the text */
+    /* Adjust margins and padding for smaller screens */
+    .map-container {
+        padding: 10px;
     }
 }
 
-/* Further responsive design for very small screens (max width: 480px) */
+/* Ensuring proper padding and margins for the content */
 @media (max-width: 480px) {
-    /* Adjust the map's width to 100% */
-    object {
-        width: 100%;
-        height: auto;
-    }
-
-    /* Make the country name font size smaller */
     .country-name {
-        font-size: 24px;
-    }
-
-    /* Further reduce the font size for the heading */
-    h2 {
-        font-size: 20px;
+        font-size: 18px;  /* Even smaller font size for very small screens */
     }
 }
