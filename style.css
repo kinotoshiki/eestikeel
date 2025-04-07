@@ -66,3 +66,17 @@ a:link, a:visited {
         vertical-align: middle; /* Aligns the radio button vertically with the text */
     }
 }
+
+/* Style for the map container */
+.map-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Style for the country name display */
+.country-name {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
