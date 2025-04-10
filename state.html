@@ -295,7 +295,7 @@
           const countryId = country.getAttribute("id") || "Unknown";
           const nameEt = countryNamesInEstonian[countryId] || "Väljaspool Euroopat";
           const nameEn = countryNamesInEnglish[countryId] || "Outside Europe";
-          document.getElementById("country-name").textContent = `${nameEt} <br> ${countryFlags} <br> (${nameEn})`;
+          document.getElementById("country-name").innerHTML = `${nameEt} <br> ${countryFlags} <br> (${nameEn})`;
 
         // Play the corresponding audio
           const audioFile = countryAudioFiles[countryId];
