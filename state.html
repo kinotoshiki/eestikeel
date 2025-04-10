@@ -80,7 +80,7 @@
   <div class="map-container">
     <h2>🔊 Click on a country in the map</h2>
     <div id="country-name" class="country-name">Klõpsake kaardil riiki</div>
-    <object id="europe-map" type="image/svg+xml" data="europe.svg" width="100%" height="600px"></object>
+    <object id="europe-map" type="image/svg+xml" data="europe_highlighted.svg" width="100%" height="600px"></object>
   </div>
 
   <audio id="country-audio" style="display: none;" preload="auto">
@@ -283,6 +283,8 @@
         "GE": "gruusia.mp3",
         "CY": "küpros.mp3"
     };
+    // Store the currently highlighted country element
+    let currentHighlighted = null;
 
     // Add interactivity to the SVG map
     document.getElementById("europe-map").addEventListener("load", function () {
@@ -296,6 +298,15 @@
           const nameEn = countryNamesInEnglish[countryId] || "Unknown country";
           const flag = countryFlags[countryId] || "";
           document.getElementById("country-name").innerHTML = `${flag} ${nameEt} (${nameEn})`;
+
+          // Remove previous highlight
+          if (currentHighlighted) {
+            currentHighlighted.removeAttribute("fill");
+          }
+
+          // Highlight clicked country
+          this.setAttribute("fill", "#add8e6");
+          currentHighlighted = this;
 
         // Play the corresponding audio
           const audioFile = countryAudioFiles[countryId];
