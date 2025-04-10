@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +26,8 @@
     }
 
     .country-name {
-      font-size: 20px;
+      color: blue;
+      font-size: 26px;
       font-weight: bold;
       margin-top: 20px;
     }
@@ -77,105 +79,107 @@
 <body>
   <div class="map-container">
     <h2>Click on a country in the map</h2>
+    <div id="country-name" class="country-name">Klõpsake kaardil riiki</div>
     <object id="europe-map" type="image/svg+xml" data="europe.svg" width="100%" height="600px"></object>
-    <div id="country-name" class="country-name">Select a country on the map.</div>
   </div>
 
   <script>
     // Estonian country names
     const countryNamesInEstonian = {
-      "Albania": "Albaania",
-      "Austria": "Austria",
-      "Belgium": "Belgia",
-      "Bulgaria": "Bulgaaria",
-      "Bosnia and Herzegovina": "Bosnia ja Hertsegoviina",
-      "Belarus": "Valgevene",
-      "Switzerland": "Šveits",
-      "Czech Republic": "Tšehhi",
-      "Germany": "Saksamaa",
-      "Denmark": "Taani",
-      "Estonia": "Eesti",
-      "Finland": "Soome",
-      "United Kingdom": "Suurbritannia",
-      "Greece": "Kreeka",
-      "Croatia": "Horvaatia",
-      "Hungary": "Ungari",
-      "Ireland": "Iirimaa",
-      "Iceland": "Island",
-      "Italy": "Itaalia",
-      "Lithuania": "Leedu",
-      "Luxembourg": "Luksemburg",
-      "Latvia": "Läti",
-      "Moldova": "Moldova",
-      "North Macedonia": "Põhja-Makedoonia",
-      "Montenegro": "Montenegro",
-      "Netherlands": "Holland",
-      "Norway": "Norra",
-      "Poland": "Poola",
-      "Portugal": "Portugali",
-      "Romania": "Rumeenia",
-      "Serbia": "Serbia",
-      "Slovakia": "Slovakkia",
-      "Slovenia": "Sloveenia",
-      "Sweden": "Rootsi",
-      "Ukraine": "Ukraina",
-      "France": "Prantsusmaa",
-      "Spain": "Hispaania",
-      "Turkey": "Türgi",
-      "Andorra": "Andorra",
-      "Armenia": "Armeenia",
-      "Kosovo": "Kosovo",
-      "Georgia": "Gruusia",
-      "Macedonia": "Põhja-Makedoonia",
-      "Cyprus": "Küpros"
+      "AL": "Albaania",
+      "AD": "Andorra",
+      "AM": "Armeenia",
+      "AT": "Austria",
+      "BE": "Belgia",
+      "BG": "Bulgaaria",
+      "BA": "Bosnia ja Hertsegoviina",
+      "BY": "Valgevene",
+      "CH": "Šveits",
+      "CZ": "Tšehhi",
+      "DE": "Saksamaa",
+      "DK": "Taani",
+      "EE": "Eesti",
+      "FI": "Soome",
+      "GB": "Suurbritannia",
+      "GR": "Kreeka",
+      "HR": "Horvaatia",
+      "HU": "Ungari",
+      "IE": "Iirimaa",
+      "IS": "Island",
+      "IT": "Itaalia",
+      "LI": "Liechtenstein",
+      "LT": "Leedu",
+      "LU": "Luksemburg",
+      "LV": "Läti",
+      "MD": "Moldova",
+      "MK": "Põhja-Makedoonia",
+      "ME": "Montenegro",
+      "NL": "Holland",
+      "NO": "Norra",
+      "PL": "Poola",
+      "PT": "Portugali",
+      "RO": "Rumeenia",
+      "RS": "Serbia",
+      "SK": "Slovakkia",
+      "SI": "Sloveenia",
+      "SE": "Rootsi",
+      "TR": "Türgi",
+      "UA": "Ukraina",
+      "XK": "Kosovo",
+      "FR": "Prantsusmaa",
+      "ES": "Hispaania",
+      "GE": "Gruusia",
+      "MK": "Põhja-Makedoonia",
+      "CY": "Küpros"
     };
 
     // English names (fallback)
     const countryNamesInEnglish = {
-      "Albania": "Albania",
-      "Austria": "Austria",
-      "Belgium": "Belgium",
-      "Bulgaria": "Bulgaria",
-      "Bosnia and Herzegovina": "Bosnia and Herzegovina",
-      "Belarus": "Belarus",
-      "Switzerland": "Switzerland",
-      "Czech Republic": "Czech Republic",
-      "Germany": "Germany",
-      "Denmark": "Denmark",
-      "Estonia": "Estonia",
-      "Finland": "Finland",
-      "United Kingdom": "United Kingdom",
-      "Greece": "Greece",
-      "Croatia": "Croatia",
-      "Hungary": "Hungary",
-      "Ireland": "Ireland",
-      "Iceland": "Iceland",
-      "Italy": "Italy",
-      "Lithuania": "Lithuania",
-      "Luxembourg": "Luxembourg",
-      "Latvia": "Latvia",
-      "Moldova": "Moldova",
-      "North Macedonia": "North Macedonia",
-      "Montenegro": "Montenegro",
-      "Netherlands": "Netherlands",
-      "Norway": "Norway",
-      "Poland": "Poland",
-      "Portugal": "Portugal",
-      "Romania": "Romania",
-      "Serbia": "Serbia",
-      "Slovakia": "Slovakia",
-      "Slovenia": "Slovenia",
-      "Sweden": "Sweden",
-      "Ukraine": "Ukraine",
-      "France": "France",
-      "Spain": "Spain",
-      "Turkey": "Turkey",
-      "Andorra": "Andorra",
-      "Armenia": "Armenia",
-      "Kosovo": "Kosovo",
-      "Georgia": "Georgia",
-      "Macedonia": "North Macedonia",
-      "Cyprus": "Cyprus"
+      "AL": "Albania",
+      "AD": "Andorra",
+      "AM": "Armenia",
+      "AT": "Austria",
+      "BE": "Belgium",
+      "BG": "Bulgaria",
+      "BA": "Bosnia and Herzegovina",
+      "BY": "Belarus",
+      "CH": "Switzerland",
+      "CZ": "Czech Republic",
+      "DE": "Germany",
+      "DK": "Denmark",
+      "EE": "Estonia",
+      "FI": "Finland",
+      "GB": "United Kingdom",
+      "GE": "Georgia",
+      "GR": "Greece",
+      "HR": "Croatia",
+      "HU": "Hungary",
+      "IE": "Ireland",
+      "IS": "Iceland",
+      "IT": "Italy",
+      "LI": "Liechtenstein",
+      "LT": "Lithuania",
+      "LU": "Luxembourg",
+      "LV": "Latvia",
+      "MD": "Moldova",
+      "MK": "Macedonia",
+      "ME": "Montenegro",
+      "NO": "Norway",
+      "PL": "Poland",
+      "PT": "Portugal",
+      "RO": "Romania",
+      "RS": "Serbia",
+      "SK": "Slovakia",
+      "SI": "Slovenia",
+      "SE": "Sweden",
+      "TR": "Turkey",
+      "UA": "Ukraine",
+      "XK": "Kosovo",
+      "NL": "Netherlands",
+      "ES": "Spain",
+      "FR": "France",
+      "PT": "Portugal",
+      "CY": "Cyprus"
     };
 
     // Add interactivity to the SVG map
@@ -185,9 +189,9 @@
 
       paths.forEach(country => {
         country.addEventListener("click", function () {
-          const nameAttr = country.getAttribute("name") || "Unknown";
-          const nameEt = countryNamesInEstonian[nameAttr] || "Väljaspool Euroopat";
-          const nameEn = countryNamesInEnglish[nameAttr] || "Outside Europe";
+          const countryId = country.getAttribute("id") || "Unknown";
+          const nameEt = countryNamesInEstonian[countryId] || "Väljaspool Euroopat";
+          const nameEn = countryNamesInEnglish[countryId] || "Outside Europe";
           document.getElementById("country-name").textContent = `${nameEt} (${nameEn})`;
         });
       });
