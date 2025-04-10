@@ -293,9 +293,10 @@
       paths.forEach(country => {
         country.addEventListener("click", function () {
           const countryId = country.getAttribute("id") || "Unknown";
-          const nameEt = countryNamesInEstonian[countryId] || "Väljaspool Euroopat";
-          const nameEn = countryNamesInEnglish[countryId] || "Outside Europe";
-          document.getElementById("country-name").innerHTML = `${nameEt} <br> ${countryFlags} <br> (${nameEn})`;
+          const nameEt = countryNamesInEstonian[countryId] || "Tundmatu riik";
+          const nameEn = countryNamesInEnglish[countryId] || "Unknown country";
+          const flag = countryFlags[countryId] || "";
+          document.getElementById("country-name").innerHTML = `${nameEt} <br> ${flag} <br> (${nameEn})`;
 
         // Play the corresponding audio
           const audioFile = countryAudioFiles[countryId];
