@@ -296,7 +296,7 @@
           const nameEt = countryNamesInEstonian[countryId] || "Tundmatu riik";
           const nameEn = countryNamesInEnglish[countryId] || "Unknown country";
           const flag = countryFlags[countryId] || "";
-          document.getElementById("country-name").innerHTML = `${nameEt} <br> ${flag} <br> (${nameEn})`;
+          document.getElementById("country-name").innerHTML = `${flag} ${nameEt} (${nameEn})`;
 
         // Play the corresponding audio
           const audioFile = countryAudioFiles[countryId];
