@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estonian Language Quiz: Clothes</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script>
+        const questions = [
+            { question: "kingad", correct: "shoes", options: ["shoes", "glasses", "cap", "trousers"] },
+            { question: "särk", correct: "shirt", options: ["shirt", "jacket", "scarf", "boots"] },
+            { question: "kleit", correct: "dress", options: ["dress", "hat", "jeans", "gloves"] },
+            { question: "püksid", correct: "trousers", options: ["trousers", "sweater", "skirt", "coat"] },
+            { question: "prillid", correct: "glasses", options: ["glasses", "scarf", "shoes", "shirt"] },
+            { question: "jope", correct: "jacket", options: ["jacket", "dress", "socks", "cap"] },
+            { question: "müts", correct: "cap", options: ["cap", "boots", "coat", "shorts"] },
+            { question: "saapad", correct: "boots", options: ["boots", "trousers", "shirt", "dress"] },
+            { question: "kampsun", correct: "sweater", options: ["sweater", "cap", "coat", "shoes"] },
+            { question: "sall", correct: "scarf", options: ["scarf", "skirt", "jacket", "jeans"] },
+            { question: "seelik", correct: "skirt", options: ["skirt", "socks", "shirt", "hat"] },
+            { question: "mantel", correct: "coat", options: ["coat", "scarf", "boots", "cap"] },
+            { question: "päikeseprillid", correct: "sunglasses", options: ["sunglasses", "shoes", "sweater", "shirt"] },
+            { question: "lühikesed püksid", correct: "shorts", options: ["shorts", "boots", "jacket", "socks"] },
+            { question: "sokid", correct: "socks", options: ["socks", "scarf", "shirt", "shoes"] },
+            { question: "pintsak", correct: "blazer", options: ["blazer", "coat", "cap", "skirt"] },
+            { question: "alussärk", correct: "undershirt", options: ["undershirt", "jacket", "hat", "gloves"] },
+            { question: "kindad", correct: "gloves", options: ["gloves", "sunglasses", "cap", "sweater"] },
+            { question: "dressipluus", correct: "hoodie", options: ["hoodie", "shirt", "shoes", "shorts"] },
+            { question: "tunked", correct: "overalls", options: ["overalls", "jacket", "jeans", "coat"] }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function generateQuiz() {
+            const quizContainer = document.getElementById("quiz");
+            quizContainer.innerHTML = "";
+
+            questions.forEach((q, index) => {
+                shuffleArray(q.options);
+
+                const questionDiv = document.createElement("div");
+                questionDiv.className = "question";
+                questionDiv.innerHTML = `<p><strong>${index + 1}. ${q.question}</strong></p>`;
+
+                const optionsDiv = document.createElement("div");
+                optionsDiv.className = "options";
+
+                q.options.forEach(option => {
+                    const label = document.createElement("label");
+
+                    const input = document.createElement("input");
+                    input.type = "radio";
+                    input.name = `q${index}`;
+                    input.value = option;
+                    input.dataset.correct = option === q.correct;
+                    input.onclick = checkAnswer;
+
+                    label.appendChild(input);
+                    label.appendChild(document.createTextNode(" " + option));
+
+                    optionsDiv.appendChild(label);
+                });
+
+                const resultDiv = document.createElement("p");
+                resultDiv.id = `result${index}`;
+                resultDiv.className = "result";
+                questionDiv.appendChild(optionsDiv);
+                questionDiv.appendChild(resultDiv);
+
+                quizContainer.appendChild(questionDiv);
+            });
+        }
+
+        function checkAnswer(event) {
+            const selected = event.target;
+            const resultDiv = document.getElementById(`result${selected.name.substring(1)}`);
+
+            if (selected.dataset.correct === "true") {
+                resultDiv.textContent = "✅ Õige!";
+                resultDiv.style.color = "green";
+            } else {
+                resultDiv.textContent = "❌ Vale, proovi uuesti!";
+                resultDiv.style.color = "red";
+            }
+        }
+
+        window.onload = generateQuiz;
+    </script>
+</head>
+<body>
+    <div class="quiz-container">
+        <h2><a href="index.html">Estonian Language Quiz: Clothes</a></h2>
+        <div id="quiz"></div>
+        <div class="button-container">
+            <button class="start-button" onclick="window.location.href='index.html'">Main Page</button>
+        </div>
+    </div>
+</body>
+</html>
