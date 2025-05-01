@@ -1,68 +1,328 @@
-/* General styling */
+/* General styling for the body to ensure readability */
 body {
-    font-family: Arial, sans-serif;
-    background-color: white;
-    text-align: center;
+  font-family: "Comic Sans MS", "Segoe UI", sans-serif;
+  background-color: #fffafc;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
 }
 
+/* Header styling */
+header {
+  background-color: #f8e1e9;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Site title styling */
+.site-title {
+  font-size: 2em;
+  color: #d64f85;
+  font-weight: bold;
+  text-decoration: none; /* Remove underline for link */
+}
+
+/* Hover effect for site title */
+.site-title:hover {
+  color: #a5446f; /* Match hover color with nav-button */
+}
+
+/* Footer styling */
+footer {
+  background-color: #f8e1e9;
+  padding: 10px 20px;
+  border-top: 1px solid #ddd;
+  margin-top: 20px;
+}
+
+/* Footer buttons container */
+.footer-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* Navigation buttons */
+.nav-button {
+  display: block;
+  padding: 10px 20px;
+  background-color: #d64f85;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  width: fit-content;
+}
+
+/* Hover effect for navigation buttons */
+.nav-button:hover {
+  background-color: #a5446f;
+}
+
+/* Table of contents links container */
+
+.toc-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+}
+
+.toc-links li {
+  list-style-type: disc; 
+  color: #d64f85; 
+}
+
+.toc-links a {
+  color: #333;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.toc-links a:link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: #333;
+  bottom: -2px;
+  left: 0;
+  transition: width 0.3s ease;
+}
+
+.toc-links a:link:hover::after {
+  width: 100%;
+}
+
+.toc-links a:visited::after {
+  background-color: #555;
+  width: 100%;
+}
+
+.toc-links a:hover {
+  color: #666;
+}
+
+.toc-links a:hover::after {
+  background-color: #666;
+}
+
+@media (max-width: 600px) {
+  .toc-links a {
+    font-size: 1em;
+  }
+}
+
+/* Container aligned to the left */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Heading styles */
+h1 {
+  color: #d64f85;
+  font-size: 2em;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+/* Other heading styles */
 h2 {
-    text-align: center;
+  color: #a5446f;
+  margin-top: 30px;
+  font-size: 1.4em;
+  text-align: left;
 }
 
-/* Button container styling */
-.button-container {
-    margin-top: 30px;
-    display: flex; /* Default horizontal layout (row) */
-    justify-content: center;
-    gap: 20px; /* Adds space between buttons */
+h3 {
+  color: #80525e;
+  margin-top: 25px;
+  text-align: left;
 }
 
-/* Styling for buttons */
-.start-button {
-    background-color: #0072bb; /* Estonian flag color (blue) */
-    color: white;
-    padding: 12px 30px;
-    font-size: 18px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    width: auto;
+/* Media elements (video and images) */
+video,
+img {
+  display: block;
+  margin: 20px 0;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.start-button:hover {
-    background-color: #005f8f;
+/* Section spacing */
+section {
+  margin-bottom: 30px;
 }
 
-/* Visit link color set to black */
-a:link, a:visited {
-    color: black !important; /* Force links to stay black */
-    text-decoration: none;
+/* Ensure script section (details) is left-aligned */
+details {
+  text-align: left;
 }
 
-/* Responsive design for small screens (max width: 768px) */
+/* Ensure paragraphs inside details are left-aligned with wider line spacing */
+details p {
+  text-align: left;
+  margin: 8px 0;
+  line-height: 1.8;
+}
+
+/* Ordered list for questions */
+ol {
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+ol li {
+  margin-bottom: 10px;
+}
+
+/* Answer field styling */
+p {
+  font-weight: bold;
+  color: #555;
+  margin-top: 20px;
+  text-align: left;
+}
+
+/* Video wrapper for responsive YouTube embeds */
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  margin: 20px 0;
+}
+
+/* Ensure the iframe takes full space within the wrapper */
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+
+  header,
+  footer {
+    padding: 8px 10px;
+  }
+
+  .site-title {
+    font-size: 1.5em;
+  }
+
+  h1 {
+    font-size: 1.5em;
+  }
+
+  h2 {
+    font-size: 1.2em;
+  }
+
+  h3 {
+    font-size: 1.1em;
+  }
+
+  ol {
+    padding-left: 15px;
+  }
+
+  .video-wrapper {
+    padding-bottom: 56.25%;
+    max-width: 80%;
+  }
+
+  .nav-button {
+    padding: 8px 16px;
+    margin-bottom: 8px;
+  }
+}
+
+/* Map page specific styles */
+.map-container {
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 1200px;
+}
+
+.country-name {
+  color: #d64f85;
+  font-size: 26px;
+  font-weight: bold;
+  margin-top: 20px;
+  text-align: center;
+}
+
+#europe-map {
+  width: 100%;
+  height: auto;
+  max-height: 600px;
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 学習ページの画像スタイルに合わせる */
+}
+
 @media (max-width: 768px) {
-    /* Stack the buttons vertically */
-    .button-container {
-        flex-direction: column !important; /* Force the flex-direction to column */
-        gap: 10px; /* Adds space between buttons when stacked vertically */
-    }
+.country-name {
+    font-size: 18px;
+  } 
 
-    /* Center align quiz choices */
-    .options {
-        text-align: center; /* Center the quiz choices */
-    }
+  #europe-map {
+    max-height: 400px;
+  }
 
-    /* Make quiz choices vertical by using block display */
-    .options label {
-        display: block; /* This will stack the options vertically */
-        margin-bottom: 10px; /* Adds space between each option */
-        text-align: center; /* Align the text to the center inside each label */
-    }
+  .map-container {
+    padding: 10px;
+  }
+}
 
-    /* Style the radio buttons (optional: to make them smaller or aligned properly) */
-    .options input[type="radio"] {
-        margin-right: 10px; /* Adds space between the radio button and text */
-        vertical-align: middle; /* Aligns the radio button vertically with the text */
-    }
+@media (max-width: 480px) {
+.country-name {
+    font-size: 16px;
+  } 
+
+  #europe-map {
+    max-height: 300px;
+  }
+
+  .map-container {
+    padding: 5px;
+  }
+}
+
+.country-list {
+  margin: 20px auto;
+  text-align: center;
+}
+
+.country-list h3 {
+  font-size: 1.2em;
+  color: #d64f85;
+}
+
+.country-list select {
+  padding: 5px;
+  font-size: 1em;
+  border: 2px solid #d64f85;
+  border-radius: 5px;
+  background-color: #fffafc;
+  color: #333;
 }

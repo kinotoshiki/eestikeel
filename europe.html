@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interactive Europe Map - Country Names in Estonian</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div id="header-placeholder"></div>
+
+  <div class="container">
+
+    <div id="country-name" class="country-name">
+        🔊 Klõpsake kaardil riiki või valige nimekirjast<br>(Click a country on the map or pick from the list)
+    </div>
+
+    <div class="country-list">
+      <select id="country-select" onchange="playCountryAudio(this.value)">
+        <option value="">-- Select a Country --</option>
+        <option value="AL">Albania</option>
+        <option value="AD">Andorra</option>
+        <option value="AM">Armenia</option>
+        <option value="AT">Austria</option>
+        <option value="BE">Belgium</option>
+        <option value="BG">Bulgaria</option>
+        <option value="BA">Bosnia and Herzegovina</option>
+        <option value="BY">Belarus</option>
+        <option value="CH">Switzerland</option>
+        <option value="CZ">Czech Republic</option>
+        <option value="DE">Germany</option>
+        <option value="DK">Denmark</option>
+        <option value="EE">Estonia</option>
+        <option value="FI">Finland</option>
+        <option value="GB">United Kingdom</option>
+        <option value="GR">Greece</option>
+        <option value="HR">Croatia</option>
+        <option value="HU">Hungary</option>
+        <option value="IE">Ireland</option>
+        <option value="IS">Iceland</option>
+        <option value="IT">Italy</option>
+        <option value="LI">Liechtenstein</option>
+        <option value="LT">Lithuania</option>
+        <option value="LU">Luxembourg</option>
+        <option value="LV">Latvia</option>
+        <option value="MD">Moldova</option>
+        <option value="MK">North Macedonia</option>
+        <option value="ME">Montenegro</option>
+        <option value="NL">Netherlands</option>
+        <option value="NO">Norway</option>
+        <option value="PL">Poland</option>
+        <option value="PT">Portugal</option>
+        <option value="RO">Romania</option>
+        <option value="RS">Serbia</option>
+        <option value="SK">Slovakia</option>
+        <option value="SI">Slovenia</option>
+        <option value="SE">Sweden</option>
+        <option value="TR">Turkey</option>
+        <option value="UA">Ukraine</option>
+        <option value="XK">Kosovo</option>
+        <option value="FR">France</option>
+        <option value="ES">Spain</option>
+        <option value="GE">Georgia</option>
+        <option value="CY">Cyprus</option>
+      </select>
+    </div>
+
+    <object id="europe-map" type="image/svg+xml" data="europe_highlighted.svg" width="100%" height="600px"></object>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <audio id="country-audio" style="display: none;" preload="auto">
+    <source id="audio-source" type="audio/mp3">
+  </audio>
+
+  <script>
+    const countryNamesInEstonian = {
+      "AL": "Albaania",
+      "AD": "Andorra",
+      "AM": "Armeenia",
+      "AT": "Austria",
+      "BE": "Belgia",
+      "BG": "Bulgaaria",
+      "BA": "Bosnia ja Hertsegoviina",
+      "BY": "Valgevene",
+      "CH": "Šveits",
+      "CZ": "Tšehhi Vabariik",
+      "DE": "Saksamaa",
+      "DK": "Taani",
+      "EE": "Eesti",
+      "FI": "Soome",
+      "GB": "Suurbritannia",
+      "GR": "Kreeka",
+      "HR": "Horvaatia",
+      "HU": "Ungari",
+      "IE": "Iirimaa",
+      "IS": "Island",
+      "IT": "Itaalia",
+      "LI": "Liechtenstein",
+      "LT": "Leedu",
+      "LU": "Luksemburg",
+      "LV": "Läti",
+      "MD": "Moldova",
+      "MK": "Põhja-Makedoonia",
+      "ME": "Montenegro",
+      "NL": "Holland",
+      "NO": "Norra",
+      "PL": "Poola",
+      "PT": "Portugali",
+      "RO": "Rumeenia",
+      "RS": "Serbia",
+      "SK": "Slovakkia",
+      "SI": "Sloveenia",
+      "SE": "Rootsi",
+      "TR": "Türgi",
+      "UA": "Ukraina",
+      "XK": "Kosovo",
+      "FR": "Prantsusmaa",
+      "ES": "Hispaania",
+      "GE": "Gruusia",
+      "CY": "Küpros"
+    };
+  
+    const countryFlags = {
+      "AD": "🇦🇩",
+      "AL": "🇦🇱",
+      "AM": "🇦🇲",
+      "AT": "🇦🇹",
+      "BA": "🇧🇦",
+      "BE": "🇧🇪",
+      "BG": "🇧🇬",
+      "BY": "🇧🇾",
+      "CH": "🇨🇭",
+      "CY": "🇨🇾",
+      "CZ": "🇨🇿",
+      "DE": "🇩🇪",
+      "DK": "🇩🇰",
+      "EE": "🇪🇪",
+      "ES": "🇪🇸",
+      "FI": "🇫🇮",
+      "FR": "🇫🇷",
+      "GB": "🇬🇧",
+      "GE": "🇬🇪",
+      "GR": "🇬🇷",
+      "HR": "🇭🇷",
+      "HU": "🇭🇺",
+      "IE": "🇮🇪",
+      "IS": "🇮🇸",
+      "IT": "🇮🇹",
+      "LI": "🇱🇮",
+      "LT": "🇱🇹",
+      "LU": "🇱🇺",
+      "LV": "🇱🇻",
+      "MD": "🇲🇩",
+      "ME": "🇲🇪",
+      "MK": "🇲🇰",
+      "NL": "🇳🇱",
+      "NO": "🇳🇴",
+      "PL": "🇵🇱",
+      "PT": "🇵🇹",
+      "RO": "🇷🇴",
+      "RS": "🇷🇸",
+      "SE": "🇸🇪",
+      "SI": "🇸🇮",
+      "SK": "🇸🇰",
+      "TR": "🇹🇷",
+      "UA": "🇺🇦",
+      "XK": "🇽🇰"
+    };
+  
+    const countryNamesInEnglish = {
+      "AL": "Albania",
+      "AD": "Andorra",
+      "AM": "Armenia",
+      "AT": "Austria",
+      "BE": "Belgium",
+      "BG": "Bulgaria",
+      "BA": "Bosnia and Herzegovina",
+      "BY": "Belarus",
+      "CH": "Switzerland",
+      "CZ": "Czech Republic",
+      "DE": "Germany",
+      "DK": "Denmark",
+      "EE": "Estonia",
+      "FI": "Finland",
+      "GB": "United Kingdom",
+      "GE": "Georgia",
+      "GR": "Greece",
+      "HR": "Croatia",
+      "HU": "Hungary",
+      "IE": "Ireland",
+      "IS": "Iceland",
+      "IT": "Italy",
+      "LI": "Liechtenstein",
+      "LT": "Lithuania",
+      "LU": "Luxembourg",
+      "LV": "Latvia",
+      "MD": "Moldova",
+      "MK": "North Macedonia",
+      "ME": "Montenegro",
+      "NO": "Norway",
+      "PL": "Poland",
+      "PT": "Portugal",
+      "RO": "Romania",
+      "RS": "Serbia",
+      "SK": "Slovakia",
+      "SI": "Slovenia",
+      "SE": "Sweden",
+      "TR": "Turkey",
+      "UA": "Ukraine",
+      "XK": "Kosovo",
+      "NL": "Netherlands",
+      "ES": "Spain",
+      "FR": "France",
+      "CY": "Cyprus"
+    };
+  
+    const audioFolder = "audio/";
+  
+    const countryAudioFiles = {
+      "AL": "albaania.mp3",
+      "AD": "andorra.mp3",
+      "AM": "armeenia.mp3",
+      "AT": "austria.mp3",
+      "BE": "belgia.mp3",
+      "BG": "bulgaaria.mp3",
+      "BA": "bosnia.mp3",
+      "BY": "valgevene.mp3",
+      "CH": "sveits.mp3",
+      "CZ": "tsehhi.mp3",
+      "DE": "saksamaa.mp3",
+      "DK": "taani.mp3",
+      "EE": "eesti.mp3",
+      "FI": "soome.mp3",
+      "GB": "suurbritannia.mp3",
+      "GR": "kreeka.mp3",
+      "HR": "horvaatia.mp3",
+      "HU": "ungari.mp3",
+      "IE": "iirimaa.mp3",
+      "IS": "island.mp3",
+      "IT": "itaalia.mp3",
+      "LI": "liechtenstein.mp3",
+      "LT": "leedu.mp3",
+      "LU": "luxemburg.mp3",
+      "LV": "lati.mp3",
+      "MD": "moldova.mp3",
+      "MK": "pohja_makedoonia.mp3",
+      "ME": "montenegro.mp3",
+      "NL": "holland.mp3",
+      "NO": "norra.mp3",
+      "PL": "poola.mp3",
+      "PT": "portugal.mp3",
+      "RO": "rumeenia.mp3",
+      "RS": "serbia.mp3",
+      "SK": "slovakkia.mp3",
+      "SI": "sloveenia.mp3",
+      "SE": "rootsi.mp3",
+      "TR": "turgi.mp3",
+      "UA": "ukraina.mp3",
+      "XK": "kosovo.mp3",
+      "FR": "prantsusmaa.mp3",
+      "ES": "hispaania.mp3",
+      "GE": "gruusia.mp3",
+      "CY": "kupros.mp3"
+    };
+  
+    let currentHighlighted = null;
+    let svgLoaded = false;
+    let svgLoadPromise = null;
+  
+    function waitForSvgLoad() {
+      if (svgLoaded) {
+        return Promise.resolve();
+      }
+      if (!svgLoadPromise) {
+        svgLoadPromise = new Promise(resolve => {
+          document.getElementById("europe-map").addEventListener("load", () => {
+            svgLoaded = true;
+            resolve();
+          });
+        });
+      }
+      return svgLoadPromise;
+    }
+  
+    document.getElementById("europe-map").addEventListener("load", function () {
+      const svgDoc = document.getElementById("europe-map").contentDocument;
+      const paths = svgDoc.querySelectorAll("path");
+  
+      paths.forEach(country => {
+        country.addEventListener("click", function () {
+          const countryId = country.getAttribute("id") || "Unknown";
+          playCountryAudio(countryId);
+          document.getElementById("country-select").value = countryId;
+        });
+      });
+  
+      svgLoaded = true;
+    });
+  
+    async function playCountryAudio(countryId) {
+      if (!countryId) return;
+  
+      const nameEt = countryNamesInEstonian[countryId] || "Tundmatu riik";
+      const flag = countryFlags[countryId] || "";
+      document.getElementById("country-name").innerHTML = `${flag} ${nameEt}`;
+  
+      await waitForSvgLoad();
+  
+      const svgDoc = document.getElementById("europe-map").contentDocument;
+      const countryElement = svgDoc.getElementById(countryId);
+  
+      if (currentHighlighted) {
+        currentHighlighted.removeAttribute("fill");
+      }
+      if (countryElement) {
+        countryElement.setAttribute("fill", "#add8e6");
+        currentHighlighted = countryElement;
+      }
+  
+      const audioFile = countryAudioFiles[countryId];
+      if (audioFile) {
+        const audioElement = document.getElementById("country-audio");
+        document.getElementById("audio-source").src = audioFolder + audioFile;
+        audioElement.load();
+        audioElement.play();
+      }
+    }
+  
+    fetch('header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+      })
+      .catch(error => console.error('Error loading header:', error));
+  
+    fetch('footer.html')
+      .then(response => {
+        if (!response.ok) throw new Error('Footer file not found');
+        return response.text();
+      })
+      .then(data => {
+        let footerContent = data.replace('{{nextPage}}', '#');
+        footerContent = footerContent.replace('{{backPage}}', '#');
+        document.getElementById('footer-placeholder').innerHTML = footerContent;
+        document.getElementById('footer-nav').style.display = 'none';
+      })
+      .catch(error => {
+        console.error('Error loading footer:', error);
+        document.getElementById('footer-placeholder').innerHTML = '<footer>Error loading footer</footer>';
+      });
+  </script>
+</body>
+</html>
